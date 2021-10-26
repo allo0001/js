@@ -50,7 +50,99 @@
 <script>
   "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
+// ES6
+  class PostES6{
+  	constructor (author, text){
+  		this.author = author;
+  		this.text = text;
+  		this.changeDate = new Date();
+  	}
+  	
+  	edit(text){
+  		this.text = text;
+  		this.changeDate = new Date();
+  	}
+  }
+
+
+  class AttachedPostES6 extends PostES6 {
+  	constructor (author, text){
+  		super(author, text);
+  		this.highlighted = false;
+  	}
+
+  	makeTextHighlighted(){
+  		this.highlighted = true;
+  		this.changeDate = new Date();
+  	}
+  }
+
+// ES5
+function PostES5 (author, text){
+  		this.author = author;
+  		this.text = text;
+  		this.changeDate = new Date();
+  	}
+  	
+PostES5.prototype.edit = function (text){
+  		this.text = text;
+  		this.changeDate = new Date();
+  	}
+
+
+function AttachedPostES5 (author, text){
+  		PostES5.call(this, author, text);
+  		this.highlighted = false;
+  	}
+
+AttachedPostES5.prototype = Object.create(PostES5.prototype);
+
+AttachedPostES5.prototype.makeTextHighlighted = function(){
+  		this.highlighted = true;
+  		this.changeDate = new Date();
+  	}
+ 
+
+
+  function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
+ 
+
+ //es6 
+ console.log('es6');
+ const p1 = new  AttachedPostES6('Author1', 'Lorem');
+ console.log(p1);
+
+ sleep(3000);
+
+ p1.makeTextHighlighted();
+ console.log(p1);
+
+ sleep(3000);
+
+ p1.edit('Text2');
+ console.log(p1);
+
+ //es5
+ console.log('es5');
+ const p2 = new  AttachedPostES5('Author1', 'Lorem');
+ console.log(p2);
+
+ sleep(3000);
+
+ p2.makeTextHighlighted();
+ console.log(p2);
+
+ sleep(3000);
+
+ p2.edit('Text2');
+ console.log(p2);
+
 </script>
 </body>
 </html>
