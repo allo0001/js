@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Homework</title>
@@ -14,61 +15,72 @@
     }
   </style>
 </head>
+
 <body>
-<!--
+  <!--
 Обязательное задание.
 
 Выполнить все задачи в теге script. Комментарии, в которых написаны задачи, не
 стирать, код с решением задачи пишем под комментарием.
 -->
 
-<input id="from" type="text">
-В инпуте написано: <span></span>
+  <input id="from" type="text">
+  В инпуте написано: <span></span>
 
-<br>
-
-<button class="messageBtn">Показать блок</button>
-<div class="message">
-  Привет :)
-</div>
-
-<br>
-
-<form>
-  <input id="first" type="text"><br>
   <br>
-  <input id="second" type="text"><br>
+
+  <button class="messageBtn">Показать блок</button>
+  <div class="message">
+    Привет :)
+  </div>
+
   <br>
-  <button>Отправить</button>
-</form>
 
-<script>
-  "use strict";
+  <form>
+    <input id="first" type="text"><br>
+    <br>
+    <input id="second" type="text"><br>
+    <br>
+    <button>Отправить</button>
+  </form>
 
-  /*
-  1. При изменении значения в input, значение содержащееся в нем должно
-  моментально отображаться в span. То есть при печати в input'е тег span также
-  должен меняться.
-  */
+  <script>
+    "use strict";
 
-
-  /*
-  2. При клике на кнопку с классом messageBtn необходимо элементу с классом
-  message:
-  1) добавить два класса: animate__animated и animate__fadeInLeftBig
-  2) поставить данному элементу стиль visibility в значение 'visible'.
-   */
-
-
-  /*
-  3. Необходимо при отправке формы проверить, заполнены ли все поля в этой
-  форме. Если какое-либо поле не заполнено, его необходимо подсветить и не дать
-  отправить форму. Форма отправляется, только если оба поля не пусты.
-  Если поле было подсвечено в прошлый раз, а в другой раз поле было заполнено,
-  то выделение данного поля надо убрать.
-   */
+    /*
+    1. При изменении значения в input, значение содержащееся в нем должно
+    моментально отображаться в span. То есть при печати в input'е тег span также
+    должен меняться.
+    */
+    let el = document.querySelector('input');
+    el.addEventListener('input', (event) => {
+      document.querySelector('span').textContent = event.target.value;
+    });
 
 
-</script>
+    /*
+    2. При клике на кнопку с классом messageBtn необходимо элементу с классом
+    message:
+    1) добавить два класса: animate__animated и animate__fadeInLeftBig
+    2) поставить данному элементу стиль visibility в значение 'visible'.
+     */
+    el = document.querySelector('.messageBtn');
+    el.addEventListener('click', () => {
+      const d = document.querySelector('.message');
+      d.classList.add('animate__animated', 'animate__fadeInLeftBig');
+      d.style.visibility = 'visible';
+    });
+
+    /*
+    3. Необходимо при отправке формы проверить, заполнены ли все поля в этой
+    форме. Если какое-либо поле не заполнено, его необходимо подсветить и не дать
+    отправить форму. Форма отправляется, только если оба поля не пусты.
+    Если поле было подсвечено в прошлый раз, а в другой раз поле было заполнено,
+    то выделение данного поля надо убрать.
+     */
+
+
+  </script>
 </body>
+
 </html>
