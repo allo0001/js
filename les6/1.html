@@ -58,7 +58,11 @@
     "Добавлено" и кнопка должна стать неактивной.
      */
     document.body.addEventListener('click', event => {
-      console.log(event.target);
+      let b = event.target;
+      if (b.tagName === 'BUTTON') {
+        b.textContent = 'Добавлено';
+        b.disabled = true;
+      }
     })
 
     /*
@@ -69,13 +73,16 @@
     отображенный товар на странице на созданную копию. У данной копии также
     должен правильно работать код из 3-го задания.
      */
-
-
+    let el = document.querySelector('.product').cloneNode(true);
+    console.log(el.querySelector('img'));
+    el.querySelector('img').src = 'http://lorempixel.com/200/300/food/4/';
+    el.querySelector('.productName').textContent = "Товар 4";
+    document.querySelector('.product:last-of-type').replaceWith(el);
     /*
     5. По истечению 2 секунд с момента открытия страницы первый товар должен быть
     удален из html.
      */
-
+    setTimeout(() => document.querySelector('.product:first-of-type').remove(), 2000);
 
   </script>
 </body>
