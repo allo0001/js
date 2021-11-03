@@ -78,7 +78,20 @@
     Если поле было подсвечено в прошлый раз, а в другой раз поле было заполнено,
     то выделение данного поля надо убрать.
      */
+    let i1 = document.getElementById('first');
+    let i2 = document.getElementById('second');
 
+    document.querySelector('form').addEventListener('submit', event => {
+      if (i1.value === '') {
+        i1.style.borderColor = 'red';
+      }
+      if (i2.value === '') {
+        i2.style.borderColor = 'red';
+      }
+      if (i1.value === '' || i2.value === '') {
+        event.preventDefault();
+      }
+    });
 
   </script>
 </body>
