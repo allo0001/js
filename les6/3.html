@@ -39,8 +39,10 @@
     el.addEventListener('mouseover', event => {
       let star = event.target;
       if (star.classList.contains('fas')) {
-        star.classList.add('golden');
-        console.dir(star.previousElementSibling);
+        while (star) {
+          star.classList.add('golden');
+          star = star.previousElementSibling;
+        }
       }
     })
 
@@ -48,7 +50,15 @@
     2. Когда мы уводим курсор мыши от звезды, все поставленные классы из первого
     задания должны быть удалены.
      */
-
+    el.addEventListener('mouseout', event => {
+      let star = event.target;
+      if (star.classList.contains('fas')) {
+        while (star) {
+          star.classList.remove('golden');
+          star = star.previousElementSibling;
+        }
+      }
+    })
 
     /*
     3. Когда мы переводим мышь от одной звезды к другой, у нас могут мигать
